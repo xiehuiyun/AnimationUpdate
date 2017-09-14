@@ -49,10 +49,15 @@ public class Practice03OfObjectLayout extends RelativeLayout {
 
     private class PointFEvaluator implements TypeEvaluator<PointF> {
 
+        private float x;
+        private float y;
+
         // 重写 evaluate() 方法，让 PointF 可以作为属性来做动画
         @Override
         public PointF evaluate(float fraction, PointF startValue, PointF endValue) {
-            return startValue;
+            x = startValue.x + (endValue.x - startValue.x) * fraction;
+            y = startValue.y + (endValue.y - startValue.y) * fraction;
+            return new PointF(x, y);
         }
     }
 }
