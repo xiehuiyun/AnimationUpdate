@@ -51,8 +51,12 @@ public class Practice05AnimatorSetLayout extends RelativeLayout {
                 // 用 AnimatorSet 的方法来让三个动画协作执行
                 // 要求 1： animator1 先执行，animator2 在 animator1 完成后立即开始
                 // 要求 2： animator2 和 animator3 同时开始
-                animatorSet.play(animator1);
-                animatorSet.playTogether(animator2,animator3);
+                animatorSet.playSequentially(animator1,animator2);// 两个动画依次执行
+                animatorSet.playTogether(animator2,animator3);// 一起执行
+                /*
+                playSequentially()，就可以让两个动画依次播放
+                使用 AnimatorSet.play(animatorA).with/before/after(animatorB)的方式来精确配置各个 Animator 之间的关系
+                 */
 
                 animatorSet.start();
             }
